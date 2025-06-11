@@ -27,7 +27,7 @@ const Navigation = () => {
               <img 
                 src="/lovable-uploads/4318bb77-9732-4ca0-94b3-5fb3dc5cf15c.png" 
                 alt="Compassionate North Grenville Logo" 
-                className="h-8 w-auto object-contain"
+                className="h-10 w-auto object-contain"
               />
             </div>
             <div className="hidden sm:block">
