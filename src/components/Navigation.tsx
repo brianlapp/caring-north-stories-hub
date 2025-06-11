@@ -23,11 +23,11 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover-scale">
-            <div className="w-12 h-12 flex items-center justify-center">
+            <div className="flex items-center justify-center">
               <img 
                 src="/lovable-uploads/4318bb77-9732-4ca0-94b3-5fb3dc5cf15c.png" 
                 alt="Compassionate North Grenville Logo" 
-                className="w-8 h-8 object-contain"
+                className="h-8 w-auto object-contain"
               />
             </div>
             <div className="hidden sm:block">
