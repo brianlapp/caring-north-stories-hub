@@ -60,11 +60,11 @@ const Contact = () => {
       <div className="bg-secondary/20 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
-            Get in Touch
+            Connect With Us
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We'd love to hear from you. Whether you have a story to share, want to get involved, 
-            or have questions about our community, we're here to connect.
+            We'd love to hear from you. Whether you have a story to share, want to connect with others, 
+            or have questions about our community, we're here to facilitate meaningful connections.
           </p>
         </div>
       </div>
@@ -122,7 +122,7 @@ const Contact = () => {
                     required
                     rows={6}
                     className="mt-2 text-lg"
-                    placeholder="Tell us how we can help, share your story, or ask any questions you have..."
+                    placeholder="Share your story, ask questions, or tell us how you'd like to connect with our community..."
                   />
                 </div>
 
@@ -134,7 +134,7 @@ const Contact = () => {
                     className="mt-1"
                   />
                   <Label htmlFor="newsletter" className="text-sm text-muted-foreground leading-relaxed">
-                    I'd like to receive updates about events and community stories 
+                    I'd like to receive updates about community gatherings and stories 
                     (we'll only send meaningful updates, never spam)
                   </Label>
                 </div>
@@ -199,31 +199,31 @@ const Contact = () => {
               </div>
             </Card>
 
-            {/* How We Can Help */}
+            {/* Ways to Connect */}
             <Card className="p-8">
               <h3 className="text-xl font-heading font-bold text-foreground mb-4">
-                How We Can Help
+                Ways to Connect
               </h3>
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-start space-x-2">
                   <span className="text-primary mt-1">•</span>
-                  <span>Connect you with community support during difficult times</span>
+                  <span>Share your story of compassion or community connection</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-primary mt-1">•</span>
-                  <span>Help you find upcoming events and gatherings</span>
+                  <span>Learn about upcoming community gatherings and conversations</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-primary mt-1">•</span>
-                  <span>Share your story of compassion with our community</span>
+                  <span>Connect with others who understand life's challenges</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-primary mt-1">•</span>
-                  <span>Provide information about caregiving resources</span>
+                  <span>Ask questions about our community mission and values</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-primary mt-1">•</span>
-                  <span>Answer questions about our mission and values</span>
+                  <span>Explore ways to be part of our storytelling community</span>
                 </li>
               </ul>
             </Card>
@@ -233,8 +233,7 @@ const Contact = () => {
               <h4 className="font-semibold text-foreground mb-2">Response Time</h4>
               <p className="text-sm text-muted-foreground">
                 We typically respond to messages within 2-3 business days. 
-                If you need immediate support, please don't hesitate to reach 
-                out to local emergency services or crisis support lines.
+                Our focus is on facilitating meaningful community connections and conversations.
               </p>
             </Card>
           </div>
