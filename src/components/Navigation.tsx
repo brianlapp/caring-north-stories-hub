@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Heart } from 'lucide-react';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,7 +24,11 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover-scale">
             <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-              <Heart className="w-6 h-6 text-primary-foreground" />
+              <img 
+                src="/lovable-uploads/4318bb77-9732-4ca0-94b3-5fb3dc5cf15c.png" 
+                alt="Compassionate North Grenville Logo" 
+                className="w-8 h-8 object-contain"
+              />
             </div>
             <div className="hidden sm:block">
               <h1 className="text-xl font-heading font-semibold text-foreground">
