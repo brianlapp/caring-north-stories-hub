@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Heart, Users, Lightbulb, HandHeart, ArrowRight } from 'lucide-react';
+import { ArrowRight, Mail } from 'lucide-react';
 
 const About = () => {
   return (
@@ -19,13 +20,23 @@ const About = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Vision */}
+        <Card className="p-8 mb-16">
+          <h2 className="text-3xl font-heading font-bold text-foreground mb-6 text-center">
+            Our Vision
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed text-center">
+            North Grenville is a compassionate community that nurtures and supports compassion and connection as we live, die, grieve, and care for each other.
+          </p>
+        </Card>
+
         {/* Mission */}
         <Card className="p-8 mb-16">
           <h2 className="text-3xl font-heading font-bold text-foreground mb-6 text-center">
             Our Mission
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed text-center">
-            [Mission statement to be extracted from CNG.docx.pdf document]
+            Our mission is to foster a compassionate and inclusive community that embraces the full journey of life, illness, death, caring and bereavement. We are dedicated to helping normalize and destigmatize these universal experiences through sharing stories.
           </p>
         </Card>
 
@@ -34,18 +45,42 @@ const About = () => {
           <h2 className="text-3xl font-heading font-bold text-foreground mb-6 text-center">
             Our Values
           </h2>
-          <div className="text-lg text-muted-foreground leading-relaxed text-center">
-            [Values to be extracted from CNG.docx.pdf document]
+          <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+            <ul className="space-y-3">
+              <li>• Compassion is inclusive and diverse</li>
+              <li>• How we do things is as important as what we do</li>
+              <li>• We work in partnership to build communities and networks</li>
+              <li>• We respect the individual and their choices</li>
+              <li>• We approach our work with openness and curiosity</li>
+              <li>• Cultural humility guides our conversations, engagement, and decision-making. Cultural humility is a process of self-reflection and discovery to understand oneself and then others in order to build honest and trustworthy relationships.</li>
+            </ul>
           </div>
         </Card>
 
-        {/* Aspirations */}
+        {/* Charter Aspirations */}
         <Card className="p-8 mb-16">
           <h2 className="text-3xl font-heading font-bold text-foreground mb-6 text-center">
-            Our Aspirations
+            Charter for Compassionate North Grenville
           </h2>
-          <div className="text-lg text-muted-foreground leading-relaxed text-center">
-            [Aspirations to be extracted from CNG.docx.pdf document]
+          <p className="text-lg text-muted-foreground mb-6 text-center">We aspire towards:</p>
+          <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <ol className="space-y-4 list-decimal list-inside">
+              <li>Policies and guidelines that are reflective of compassionate community values regarding caregiving, dying, and grieving are in place in our:
+                <ul className="ml-6 mt-2 space-y-1 list-disc list-inside">
+                  <li>Schools</li>
+                  <li>Workplaces/Unions</li>
+                  <li>Residential facilities (long-term care homes, retirement homes, shelters, prisons)</li>
+                </ul>
+              </li>
+              <li>Supporting faith communities that have designated individuals or care teams for the care of caregivers, dying, and grieving people</li>
+              <li>Arts centres/galleries/historical societies organize annual exhibits, murals, or events featuring living well, dying well, caregiving and grieving</li>
+              <li>An annual memorial event to mark the loss of those who have died due to illness or accidents</li>
+              <li>A short-story or art competition that helps raise awareness of living well, dying well, caregiving, and grieving</li>
+              <li>An annual award, given by the Mayor and Council to an individual or group in North Grenville which demonstrates creativity in compassionate care and is consistent with the mission of Compassionate North Grenville</li>
+              <li>A collaborative relationship with our Municipality, working together to promote compassionate community programs, services, public events, education and funding opportunities that address the mission of Compassionate North Grenville.</li>
+              <li>Supporting communities that engage in activities for those who experience caregiving, dying, and grieving</li>
+              <li>Annual reviews of these aspirations with the intention of expanding the scope of compassion throughout North Grenville. This is a living document which will be revised as needed.</li>
+            </ol>
           </div>
         </Card>
 
@@ -93,10 +128,7 @@ const About = () => {
             Land Acknowledgement
           </h2>
           <p className="text-muted-foreground leading-relaxed text-center">
-            We acknowledge that North Grenville is located on the traditional unceded territory 
-            of the Algonquin Anishinaabe people. We are grateful for the opportunity to live, 
-            work, and build community on this land, and we commit to honoring the Indigenous 
-            peoples who have been its stewards for thousands of years.
+            Compassionate Community North Grenville operates on the territory of the Anishnabek. We recognize all First Nations, Metis, and Inuit peoples who now call North Grenville their home. We respect and support the need for cultivating a strong relationship, and we commit to Indigenous-informed decision making to foster the path towards reconciliation.
           </p>
         </Card>
 
@@ -105,12 +137,31 @@ const About = () => {
           <h3 className="text-2xl font-heading font-bold text-foreground mb-4">
             Community Support
           </h3>
-          <div className="text-muted-foreground mb-4">
-            [Community Grants Logo to be added here]
+          <div className="text-muted-foreground mb-4 p-8 border-2 border-dashed border-muted rounded-lg">
+            [Community Grants Logo - To be added when provided]
           </div>
           <p className="text-muted-foreground leading-relaxed">
             Compassionate North Grenville is supported by community grants that enable us to 
             facilitate meaningful connections and storytelling opportunities.
+          </p>
+        </Card>
+
+        {/* Contact Information */}
+        <Card className="p-8 mb-16 bg-primary/5 border-primary/20 text-center">
+          <h3 className="text-2xl font-heading font-bold text-foreground mb-4">
+            Contact Us
+          </h3>
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <Mail className="w-5 h-5 text-primary" />
+            <a 
+              href="mailto:compassionateng@gmail.com" 
+              className="text-primary hover:text-primary/80 text-lg font-medium"
+            >
+              compassionateng@gmail.com
+            </a>
+          </div>
+          <p className="text-muted-foreground leading-relaxed">
+            For further information about Compassionate North Grenville, please reach out to us via email.
           </p>
         </Card>
 
