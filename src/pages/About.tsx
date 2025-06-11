@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -218,17 +217,21 @@ const About = () => {
           </p>
         </Card>
 
-        {/* Community Grants Logo Placeholder */}
+        {/* Community Grants Logo */}
         <Card className="p-8 mb-16 bg-accent/5 border-accent/20 text-center">
           <h3 className="text-2xl font-heading font-bold text-foreground mb-4">
             Community Support
           </h3>
-          <div className="text-muted-foreground mb-4 p-8 border-2 border-dashed border-muted rounded-lg">
-            [Community Grants Logo - To be added when provided]
+          <div className="flex justify-center mb-4">
+            <img 
+              src="/lovable-uploads/dae3d4c0-cfb7-4f53-9a32-8ffcaa9e59f2.png" 
+              alt="North Grenville Community Grant Program"
+              className="h-24 w-auto object-contain"
+            />
           </div>
           <p className="text-muted-foreground leading-relaxed">
-            Compassionate North Grenville is supported by community grants that enable us to 
-            facilitate meaningful connections and storytelling opportunities.
+            Compassionate North Grenville is supported by the North Grenville Community Grant Program, 
+            which enables us to facilitate meaningful connections and storytelling opportunities.
           </p>
         </Card>
 
