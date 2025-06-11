@@ -8,35 +8,35 @@ const HeroSection = () => {
   return (
     <div className="relative overflow-hidden">
       {/* Hero Content with Background Image */}
-      <div className="relative min-h-[80vh] flex items-center justify-center">
+      <div className="relative min-h-screen flex items-center justify-center">
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(/lovable-uploads/b5c8c5e4-ee0b-4e66-8d45-f3a7e3e4f7a1.png)'
+            backgroundImage: 'url(/lovable-uploads/ea55427a-374d-46df-8e09-f4e384822ddd.png)'
           }}
         />
         
         {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/40" />
         
         {/* Hero Text Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-heading font-bold text-white mb-6 animate-fade-in drop-shadow-2xl">
+          <h1 className="text-6xl md:text-8xl font-heading font-bold text-white mb-8 animate-fade-in drop-shadow-2xl leading-tight">
             Building Community Through{' '}
-            <span className="text-primary-foreground drop-shadow-lg">Compassion</span>
+            <span className="text-primary-foreground drop-shadow-lg block mt-4">Compassion</span>
           </h1>
           
-          <p className="text-xl md:text-3xl text-white/95 mb-8 leading-relaxed animate-fade-in max-w-4xl mx-auto drop-shadow-lg">
+          <p className="text-2xl md:text-4xl text-white/95 mb-12 leading-relaxed animate-fade-in max-w-5xl mx-auto drop-shadow-lg font-medium">
             A grassroots initiative fostering care, connection, and community in North Grenville—
             particularly during caregiving, illness, dying, and grief.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 animate-fade-in">
-            <Button size="lg" className="text-xl px-10 py-6 shadow-2xl hover:shadow-xl transition-all" asChild>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8 animate-fade-in">
+            <Button size="lg" className="text-2xl px-12 py-8 shadow-2xl hover:shadow-xl transition-all font-semibold" asChild>
               <a href="/blog">Read Our Stories</a>
             </Button>
-            <Button variant="outline" size="lg" className="text-xl px-10 py-6 bg-white/10 backdrop-blur border-white/30 text-white hover:bg-white/20 shadow-2xl hover:shadow-xl transition-all" asChild>
+            <Button variant="outline" size="lg" className="text-2xl px-12 py-8 bg-white/15 backdrop-blur border-white/40 text-white hover:bg-white/25 shadow-2xl hover:shadow-xl transition-all font-semibold" asChild>
               <a href="/events">Join an Event</a>
             </Button>
           </div>
