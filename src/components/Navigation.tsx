@@ -23,20 +23,12 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 hover-scale">
-            <div className="flex items-center justify-center">
-              <img 
-                src="/lovable-uploads/4318bb77-9732-4ca0-94b3-5fb3dc5cf15c.png" 
-                alt="Compassionate North Grenville Logo" 
-                className="h-10 w-auto object-contain"
-              />
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="text-xl font-heading font-semibold text-foreground">
-                Compassionate
-              </h1>
-              <p className="text-sm text-muted-foreground -mt-1">North Grenville</p>
-            </div>
+          <Link to="/" className="flex items-center hover-scale">
+            <img 
+              src="/lovable-uploads/7bcc77c2-4881-45b3-9f91-7e5807209ceb.png" 
+              alt="Compassionate North Grenville Logo" 
+              className="h-12 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
