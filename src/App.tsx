@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import About from "./pages/About";
 import Events from "./pages/Events";
 import Calendar from "./pages/Calendar";
@@ -28,6 +29,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogPost />} />
               <Route path="/about" element={<About />} />
               <Route path="/events" element={<Events />} />
               <Route path="/calendar" element={<Calendar />} />
