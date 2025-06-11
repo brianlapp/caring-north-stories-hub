@@ -18,9 +18,9 @@ const Blog = () => {
     },
     {
       id: 2,
-      title: "The Power of Presence: Lessons from Hospice Volunteers",
-      excerpt: "Sometimes the most powerful thing we can offer someone facing loss is simply being there. Local hospice volunteers share what they've learned about the gift of presence.",
-      author: "Volunteer Team",
+      title: "The Power of Presence: Lessons from Community Connections",
+      excerpt: "Sometimes the most powerful thing we can offer someone facing loss is simply being there. Community members share what they've learned about the gift of presence and meaningful connection.",
+      author: "Community Contributors",
       date: "2024-06-01",
       category: "Community Wisdom",
       image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&h=400&fit=crop"
@@ -28,8 +28,8 @@ const Blog = () => {
     {
       id: 3,
       title: "Youngsters of Yore: Stories from Our Elders",
-      excerpt: "In our monthly storytelling circle, community elders share memories that remind us of the enduring power of human connection across generations.",
-      author: "Event Recap",
+      excerpt: "In our community storytelling circles, local elders share memories that remind us of the enduring power of human connection across generations.",
+      author: "Storytelling Circle",
       date: "2024-05-25",
       category: "Elder Wisdom",
       image: "https://images.unsplash.com/photo-1439886183900-e79ec0057170?w=800&h=400&fit=crop"
