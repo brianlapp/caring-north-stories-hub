@@ -2,55 +2,48 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Calendar, Clock, MapPin, Users } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, BookOpen, Heart, Lightbulb } from 'lucide-react';
 
 const Events = () => {
-  const upcomingEvents = [
+  const pastEvents = [
     {
       id: 1,
-      title: "Let's Talk Compassion - Monthly Circle",
-      date: "2024-06-20",
-      time: "7:00 PM - 8:30 PM",
+      title: "Advance Care Planning Workshop",
+      date: "2024-03-15",
       location: "Community Center, North Grenville",
-      description: "Join us for our monthly gathering where community members share stories, discuss challenges, and support one another in building a more compassionate community.",
-      type: "Monthly Gathering",
-      attendees: "15-20 expected"
+      description: "We brought in a renowned author and expert on advance care planning to facilitate a workshop for community members. This event helped participants understand the importance of planning for future care decisions and sparked meaningful conversations about end-of-life preferences.",
+      type: "Educational Workshop",
+      attendees: "25 participants",
+      icon: BookOpen,
+      highlights: ["Expert author presentation", "Interactive planning exercises", "Community discussion circles"]
     },
     {
       id: 2,
-      title: "Storytelling Circle: Finding Our Stories",
-      date: "2024-06-27",
-      time: "2:00 PM - 4:00 PM",
-      location: "Library Meeting Room",
-      description: "An intimate gathering focused on sharing personal stories of resilience, caregiving, and community connection. All community members welcome.",
-      type: "Storytelling",
-      attendees: "8-12 expected"
+      title: "Youngsters of Yore Presentation",
+      date: "2024-02-20",
+      location: "Senior Center, Kemptville",
+      description: "A special presentation featuring our community elders sharing stories, wisdom, and memories from their experiences. This intergenerational gathering created beautiful connections between community members of all ages.",
+      type: "Community Storytelling",
+      attendees: "30 participants",
+      icon: Heart,
+      highlights: ["Elder wisdom sharing", "Intergenerational connections", "Historical community stories"]
     },
     {
       id: 3,
-      title: "Youngsters of Yore: Elder Wisdom Session",
-      date: "2024-07-05",
-      time: "10:00 AM - 11:30 AM",
-      location: "Senior Center",
-      description: "A special session where our community elders share memories, wisdom, and stories from their experiences of community care and connection.",
-      type: "Elder Wisdom",
-      attendees: "20-25 expected"
-    },
-    {
-      id: 4,
-      title: "Grief Support and Community Healing",
-      date: "2024-07-12",
-      time: "6:30 PM - 8:00 PM",
-      location: "Faith Community Center",
-      description: "A gentle space for those navigating loss to connect with others who understand the journey. No pressure to share, just presence and support.",
-      type: "Support Circle",
-      attendees: "10-15 expected"
+      title: "Storytelling and Introduction Meeting",
+      date: "2024-01-18",
+      location: "Library Meeting Room, Kemptville",
+      description: "Our foundational gathering where community members came together to share personal stories and learn about Compassionate North Grenville's mission. This introductory meeting set the tone for our community-focused approach.",
+      type: "Introduction & Storytelling",
+      attendees: "18 participants",
+      icon: Lightbulb,
+      highlights: ["Mission introduction", "Personal story sharing", "Community building"]
     }
   ];
 
-  const handleRSVP = (eventTitle: string) => {
-    const subject = encodeURIComponent(`RSVP for ${eventTitle}`);
-    const body = encodeURIComponent(`I would like to RSVP for the event: ${eventTitle}\n\nPlease let me know if you need any additional information.\n\nThank you!`);
+  const handleContactUs = () => {
+    const subject = encodeURIComponent('Interest in Community Events');
+    const body = encodeURIComponent(`Hello,\n\nI'm interested in learning more about Compassionate North Grenville's community events and how I can get involved.\n\nPlease let me know about upcoming opportunities or how I can contribute to the community.\n\nThank you!`);
     window.location.href = `mailto:compassionateng@gmail.com?subject=${subject}&body=${body}`;
   };
 
@@ -63,53 +56,70 @@ const Events = () => {
             Community Events
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Join us for meaningful gatherings where we share stories, support one another, 
+            Meaningful gatherings where we share stories, support one another, 
             and build lasting connections in our community.
           </p>
         </div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Upcoming Events */}
+        {/* How We Organize Events */}
+        <Card className="p-8 mb-16 bg-primary/5 border-primary/20">
+          <h2 className="text-3xl font-heading font-bold text-foreground mb-6 text-center">
+            How We Organize Events
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed text-center mb-4">
+            Compassionate North Grenville organizes events as needed to serve our community's interests and needs. 
+            Rather than following a rigid schedule, we respond to opportunities for meaningful connection and learning.
+          </p>
+          <p className="text-muted-foreground leading-relaxed text-center">
+            If you have ideas for community gatherings, storytelling circles, or educational workshops, 
+            we'd love to hear from you and explore how we can facilitate these connections.
+          </p>
+        </Card>
+
+        {/* Past Events */}
         <div className="mb-16">
-          <h2 className="text-3xl font-heading font-bold text-foreground mb-8">
-            Upcoming Events
+          <h2 className="text-3xl font-heading font-bold text-foreground mb-8 text-center">
+            Recent Community Gatherings
           </h2>
           <div className="space-y-8">
-            {upcomingEvents.map((event) => (
-              <Card key={event.id} className="p-8 hover-scale transition-all duration-300 hover:shadow-lg">
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                        {event.type}
-                      </span>
+            {pastEvents.map((event) => {
+              const IconComponent = event.icon;
+              return (
+                <Card key={event.id} className="p-8 hover-scale transition-all duration-300 hover:shadow-lg">
+                  <div className="flex flex-col">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                          <IconComponent className="w-6 h-6 text-primary" />
+                        </div>
+                      </div>
+                      <div>
+                        <span className="inline-block bg-secondary/20 text-foreground px-3 py-1 rounded-full text-sm font-medium mb-2">
+                          {event.type}
+                        </span>
+                        <h3 className="text-2xl font-heading font-bold text-foreground">
+                          {event.title}
+                        </h3>
+                      </div>
                     </div>
                     
-                    <h3 className="text-2xl font-heading font-bold text-foreground mb-4">
-                      {event.title}
-                    </h3>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 text-muted-foreground">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-muted-foreground">
                       <div className="flex items-center space-x-2">
-                        <Calendar className="w-5 h-5" />
+                        <Calendar className="w-5 h-5 text-primary" />
                         <span>{new Date(event.date).toLocaleDateString('en-US', { 
-                          weekday: 'long',
                           year: 'numeric', 
                           month: 'long', 
                           day: 'numeric' 
                         })}</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Clock className="w-5 h-5" />
-                        <span>{event.time}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <MapPin className="w-5 h-5" />
+                        <MapPin className="w-5 h-5 text-primary" />
                         <span>{event.location}</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Users className="w-5 h-5" />
+                        <Users className="w-5 h-5 text-primary" />
                         <span>{event.attendees}</span>
                       </div>
                     </div>
@@ -117,61 +127,87 @@ const Events = () => {
                     <p className="text-muted-foreground leading-relaxed mb-6">
                       {event.description}
                     </p>
+
+                    {event.highlights && (
+                      <div className="bg-secondary/10 rounded-lg p-4">
+                        <h4 className="font-semibold text-foreground mb-3">Event Highlights:</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                          {event.highlights.map((highlight, index) => (
+                            <div key={index} className="flex items-center space-x-2">
+                              <div className="w-2 h-2 rounded-full bg-primary"></div>
+                              <span className="text-muted-foreground text-sm">{highlight}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  
-                  <div className="lg:ml-8 flex-shrink-0">
-                    <Button 
-                      size="lg" 
-                      className="w-full lg:w-auto text-lg px-8 py-4"
-                      onClick={() => handleRSVP(event.title)}
-                    >
-                      RSVP Now
-                    </Button>
-                  </div>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              );
+            })}
           </div>
         </div>
 
-        {/* Event Guidelines */}
-        <Card className="p-8 bg-secondary/10 border-secondary/20 mb-16">
-          <h3 className="text-2xl font-heading font-bold text-foreground mb-6">
-            What to Expect at Our Events
+        {/* Event Approach */}
+        <Card className="p-8 mb-16">
+          <h3 className="text-2xl font-heading font-bold text-foreground mb-6 text-center">
+            Our Approach to Community Events
           </h3>
-          <div className="space-y-4 text-muted-foreground leading-relaxed">
-            <div>
-              <h4 className="font-semibold text-foreground mb-2">Welcoming Environment</h4>
-              <p>All our events are designed to be inclusive, accessible, and welcoming to community members of all backgrounds and experiences.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div className="flex items-start gap-4 p-4 rounded-lg bg-secondary/10">
+                <div className="flex-shrink-0 mt-1">
+                  <Heart className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">Welcoming & Inclusive</h4>
+                  <p className="text-muted-foreground">All events are designed to be accessible and welcoming to community members of all backgrounds.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 p-4 rounded-lg bg-secondary/10">
+                <div className="flex-shrink-0 mt-1">
+                  <Users className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">Community-Driven</h4>
+                  <p className="text-muted-foreground">Events emerge from community interests and needs rather than predetermined schedules.</p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-2">No Pressure to Share</h4>
-              <p>While we encourage storytelling and discussion, there's never any pressure to share personal experiences. Your presence and listening are valuable contributions.</p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-2">Confidentiality</h4>
-              <p>What's shared in our circles stays in our circles. We maintain a respectful environment where people feel safe to be vulnerable.</p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-2">Accessibility</h4>
-              <p>We strive to make all events accessible. Please contact us if you have specific needs or questions about venue accessibility.</p>
+            <div className="space-y-4">
+              <div className="flex items-start gap-4 p-4 rounded-lg bg-secondary/10">
+                <div className="flex-shrink-0 mt-1">
+                  <BookOpen className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">Story-Centered</h4>
+                  <p className="text-muted-foreground">We emphasize sharing experiences and learning from one another's journeys.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 p-4 rounded-lg bg-secondary/10">
+                <div className="flex-shrink-0 mt-1">
+                  <Lightbulb className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">No Pressure Environment</h4>
+                  <p className="text-muted-foreground">Participation is voluntary - your presence and listening are valuable contributions.</p>
+                </div>
+              </div>
             </div>
           </div>
         </Card>
 
-        {/* Contact for Events */}
+        {/* Get Involved */}
         <Card className="p-8 bg-accent/5 border-accent/20 text-center">
           <h3 className="text-2xl font-heading font-bold text-foreground mb-4">
-            Questions About Our Events?
+            Interested in Future Gatherings?
           </h3>
           <p className="text-muted-foreground mb-6 leading-relaxed">
-            If you have questions about any of our events, need more information, or would 
-            like to suggest ideas for future gatherings, we'd love to hear from you.
+            If you'd like to be notified about future community events, have ideas for gatherings, 
+            or want to help facilitate meaningful connections in North Grenville, we'd love to hear from you.
           </p>
-          <Button size="lg" variant="outline" className="text-lg px-8 py-4" asChild>
-            <a href="mailto:compassionateng@gmail.com">
-              Contact Event Organizers
-            </a>
+          <Button size="lg" className="text-lg px-8 py-4" onClick={handleContactUs}>
+            Connect With Us
           </Button>
         </Card>
       </div>
