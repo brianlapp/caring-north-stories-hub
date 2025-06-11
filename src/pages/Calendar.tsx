@@ -4,6 +4,8 @@ import { Card } from '@/components/ui/card';
 import { Calendar as CalendarIcon, ExternalLink } from 'lucide-react';
 
 const Calendar = () => {
+  console.log('Calendar component mounted');
+  
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -42,6 +44,9 @@ const Calendar = () => {
               scrolling="no"
               className="rounded-lg shadow-sm"
               title="Compassionate North Grenville Calendar"
+              onError={(e) => {
+                console.error('Calendar iframe failed to load:', e);
+              }}
             ></iframe>
           </div>
 
