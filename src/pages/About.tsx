@@ -2,9 +2,76 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, Mail, Heart, Users, Lightbulb, Shield, Eye, Handshake, CheckCircle } from 'lucide-react';
 
 const About = () => {
+  const values = [
+    {
+      icon: Heart,
+      text: "Compassion is inclusive and diverse"
+    },
+    {
+      icon: Users,
+      text: "How we do things is as important as what we do"
+    },
+    {
+      icon: Handshake,
+      text: "We work in partnership to build communities and networks"
+    },
+    {
+      icon: Shield,
+      text: "We respect the individual and their choices"
+    },
+    {
+      icon: Lightbulb,
+      text: "We approach our work with openness and curiosity"
+    },
+    {
+      icon: Eye,
+      text: "Cultural humility guides our conversations, engagement, and decision-making. Cultural humility is a process of self-reflection and discovery to understand oneself and then others in order to build honest and trustworthy relationships."
+    }
+  ];
+
+  const charterItems = [
+    {
+      title: "Compassionate Policies",
+      description: "Policies and guidelines that are reflective of compassionate community values regarding caregiving, dying, and grieving are in place in our:",
+      subItems: ["Schools", "Workplaces/Unions", "Residential facilities (long-term care homes, retirement homes, shelters, prisons)"]
+    },
+    {
+      title: "Faith Community Support",
+      description: "Supporting faith communities that have designated individuals or care teams for the care of caregivers, dying, and grieving people"
+    },
+    {
+      title: "Arts & Cultural Events",
+      description: "Arts centres/galleries/historical societies organize annual exhibits, murals, or events featuring living well, dying well, caregiving and grieving"
+    },
+    {
+      title: "Memorial Recognition",
+      description: "An annual memorial event to mark the loss of those who have died due to illness or accidents"
+    },
+    {
+      title: "Creative Competitions",
+      description: "A short-story or art competition that helps raise awareness of living well, dying well, caregiving, and grieving"
+    },
+    {
+      title: "Community Awards",
+      description: "An annual award, given by the Mayor and Council to an individual or group in North Grenville which demonstrates creativity in compassionate care and is consistent with the mission of Compassionate North Grenville"
+    },
+    {
+      title: "Municipal Partnership",
+      description: "A collaborative relationship with our Municipality, working together to promote compassionate community programs, services, public events, education and funding opportunities that address the mission of Compassionate North Grenville"
+    },
+    {
+      title: "Community Engagement",
+      description: "Supporting communities that engage in activities for those who experience caregiving, dying, and grieving"
+    },
+    {
+      title: "Continuous Growth",
+      description: "Annual reviews of these aspirations with the intention of expanding the scope of compassion throughout North Grenville. This is a living document which will be revised as needed."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -42,18 +109,23 @@ const About = () => {
 
         {/* Values */}
         <Card className="p-8 mb-16">
-          <h2 className="text-3xl font-heading font-bold text-foreground mb-6 text-center">
+          <h2 className="text-3xl font-heading font-bold text-foreground mb-8 text-center">
             Our Values
           </h2>
-          <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
-            <ul className="space-y-3">
-              <li>• Compassion is inclusive and diverse</li>
-              <li>• How we do things is as important as what we do</li>
-              <li>• We work in partnership to build communities and networks</li>
-              <li>• We respect the individual and their choices</li>
-              <li>• We approach our work with openness and curiosity</li>
-              <li>• Cultural humility guides our conversations, engagement, and decision-making. Cultural humility is a process of self-reflection and discovery to understand oneself and then others in order to build honest and trustworthy relationships.</li>
-            </ul>
+          <div className="grid gap-6">
+            {values.map((value, index) => {
+              const IconComponent = value.icon;
+              return (
+                <div key={index} className="flex items-start gap-4 p-4 rounded-lg bg-secondary/10 hover:bg-secondary/15 transition-colors">
+                  <div className="flex-shrink-0 mt-1">
+                    <IconComponent className="w-6 h-6 text-primary" />
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-lg">
+                    {value.text}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </Card>
 
@@ -62,25 +134,39 @@ const About = () => {
           <h2 className="text-3xl font-heading font-bold text-foreground mb-6 text-center">
             Charter for Compassionate North Grenville
           </h2>
-          <p className="text-lg text-muted-foreground mb-6 text-center">We aspire towards:</p>
-          <div className="space-y-4 text-muted-foreground leading-relaxed">
-            <ol className="space-y-4 list-decimal list-inside">
-              <li>Policies and guidelines that are reflective of compassionate community values regarding caregiving, dying, and grieving are in place in our:
-                <ul className="ml-6 mt-2 space-y-1 list-disc list-inside">
-                  <li>Schools</li>
-                  <li>Workplaces/Unions</li>
-                  <li>Residential facilities (long-term care homes, retirement homes, shelters, prisons)</li>
-                </ul>
-              </li>
-              <li>Supporting faith communities that have designated individuals or care teams for the care of caregivers, dying, and grieving people</li>
-              <li>Arts centres/galleries/historical societies organize annual exhibits, murals, or events featuring living well, dying well, caregiving and grieving</li>
-              <li>An annual memorial event to mark the loss of those who have died due to illness or accidents</li>
-              <li>A short-story or art competition that helps raise awareness of living well, dying well, caregiving, and grieving</li>
-              <li>An annual award, given by the Mayor and Council to an individual or group in North Grenville which demonstrates creativity in compassionate care and is consistent with the mission of Compassionate North Grenville</li>
-              <li>A collaborative relationship with our Municipality, working together to promote compassionate community programs, services, public events, education and funding opportunities that address the mission of Compassionate North Grenville.</li>
-              <li>Supporting communities that engage in activities for those who experience caregiving, dying, and grieving</li>
-              <li>Annual reviews of these aspirations with the intention of expanding the scope of compassion throughout North Grenville. This is a living document which will be revised as needed.</li>
-            </ol>
+          <p className="text-lg text-muted-foreground mb-8 text-center font-medium">We aspire towards:</p>
+          <div className="grid gap-6">
+            {charterItems.map((item, index) => (
+              <div key={index} className="border border-border rounded-lg p-6 bg-card hover:shadow-md transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-primary font-semibold text-sm">{index + 1}</span>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    {item.title && (
+                      <h3 className="text-xl font-heading font-semibold text-foreground mb-3">
+                        {item.title}
+                      </h3>
+                    )}
+                    <p className="text-muted-foreground leading-relaxed mb-3">
+                      {item.description}
+                    </p>
+                    {item.subItems && (
+                      <div className="ml-4">
+                        {item.subItems.map((subItem, subIndex) => (
+                          <div key={subIndex} className="flex items-center gap-2 mb-2">
+                            <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                            <span className="text-muted-foreground">{subItem}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </Card>
 
