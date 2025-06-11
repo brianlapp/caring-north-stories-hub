@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Heart, Calendar, Book } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
@@ -34,10 +35,10 @@ const HeroSection = () => {
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8 animate-fade-in">
             <Button size="lg" className="text-2xl px-12 py-8 shadow-2xl hover:shadow-xl transition-all font-semibold" asChild>
-              <a href="/blog">Read Our Stories</a>
+              <Link to="/blog">Read Our Stories</Link>
             </Button>
             <Button variant="outline" size="lg" className="text-2xl px-12 py-8 bg-white/15 backdrop-blur border-white/40 text-white hover:bg-white/25 shadow-2xl hover:shadow-xl transition-all font-semibold" asChild>
-              <a href="/events">Join an Event</a>
+              <Link to="/events">Join an Event</Link>
             </Button>
           </div>
         </div>
