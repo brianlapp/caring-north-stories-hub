@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar, Heart, User, ArrowRight } from 'lucide-react';
 
 const Index = () => {
-  // Sample featured stories and events
+  // Sample featured stories
   const featuredStories = [
     {
       id: 1,
@@ -18,24 +18,9 @@ const Index = () => {
     {
       id: 2,
       title: "The Power of Presence",
-      excerpt: "Local hospice volunteers share what they've learned about the gift of simply being there for someone...",
-      author: "Volunteer Team",
+      excerpt: "Community members share what they've learned about the gift of simply being there for someone during difficult times...",
+      author: "Community Contributor",
       date: "2024-06-01"
-    }
-  ];
-
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: "Let's Talk Compassion - Monthly Circle",
-      date: "2024-06-20",
-      location: "Community Center"
-    },
-    {
-      id: 2,
-      title: "Storytelling Circle: Finding Our Stories",
-      date: "2024-06-27",
-      location: "Library Meeting Room"
     }
   ];
 
@@ -49,7 +34,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              Recent Stories
+              Community Stories
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Discover inspiring stories of compassion and connection from our community members.
@@ -95,51 +80,35 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Upcoming Events */}
+      {/* Community Connection */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              Join Us
+              Community Connections
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Connect with your community at our upcoming gatherings and events.
+              We facilitate meaningful gatherings and conversations as opportunities arise in our community.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {upcomingEvents.map((event) => (
-              <Card key={event.id} className="p-6 hover-scale transition-all duration-300 hover:shadow-lg bg-primary/5 border-primary/20">
-                <div className="flex items-center space-x-2 mb-4">
-                  <Calendar className="w-5 h-5 text-primary" />
-                  <span className="text-primary font-medium">
-                    {new Date(event.date).toLocaleDateString('en-US', { 
-                      weekday: 'long',
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}
-                  </span>
-                </div>
-                
-                <h3 className="text-xl font-heading font-bold text-foreground mb-2">
-                  {event.title}
-                </h3>
-                
-                <p className="text-muted-foreground">
-                  {event.location}
-                </p>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center">
+          <Card className="p-8 bg-primary/5 border-primary/20 text-center mb-12">
+            <Calendar className="w-12 h-12 text-primary mx-auto mb-4" />
+            <h3 className="text-2xl font-heading font-bold text-foreground mb-4">
+              Past Community Gatherings
+            </h3>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+              Our recent events have included advance care planning workshops, storytelling circles, 
+              and intergenerational conversations that have brought our community together around 
+              shared experiences of care and compassion.
+            </p>
             <Button size="lg" className="text-lg px-8 py-4" asChild>
               <a href="/events">
-                View All Events
+                Learn About Our Events
                 <ArrowRight className="w-5 h-5 ml-2" />
               </a>
             </Button>
-          </div>
+          </Card>
         </div>
       </section>
 
@@ -148,18 +117,18 @@ const Index = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Heart className="w-16 h-16 text-accent mx-auto mb-6" />
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
-            Be Part of Something Meaningful
+            Be Part of Our Community
           </h2>
           <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-            Whether you're seeking support, want to share your story, or simply wish to 
-            connect with others who understand life's challenges, you have a place in our community.
+            Whether you want to share your story, connect with others who understand life's challenges, 
+            or learn about compassionate community building, there's a place for you here.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="text-lg px-8 py-4" asChild>
-              <a href="/contact">Share Your Story</a>
+              <a href="/contact">Connect With Us</a>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-4" asChild>
-              <a href="/about">Learn More</a>
+              <a href="/about">Learn About Our Mission</a>
             </Button>
           </div>
         </div>
