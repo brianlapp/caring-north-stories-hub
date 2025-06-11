@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Mail, Heart, Phone, MapPin } from 'lucide-react';
+import { Mail, Heart, Phone, MapPin, Facebook } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
@@ -177,6 +177,23 @@ const Contact = () => {
                   <div>
                     <p className="font-medium text-foreground">Location</p>
                     <p className="text-muted-foreground">North Grenville, Ontario</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center">
+                    <Facebook className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground">Facebook</p>
+                    <a 
+                      href="https://www.facebook.com/compassionatenorthgrenville/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-primary hover:text-primary/80 transition-colors story-link"
+                    >
+                      @compassionatenorthgrenville
+                    </a>
                   </div>
                 </div>
               </div>

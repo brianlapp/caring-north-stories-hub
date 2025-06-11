@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Heart } from 'lucide-react';
+import { Heart, Facebook } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -54,7 +54,7 @@ const Footer = () => {
           {/* Contact */}
           <div>
             <h3 className="text-lg font-heading font-semibold mb-4">Connect With Us</h3>
-            <div className="space-y-2">
+            <div className="space-y-3">
               <p className="text-muted-foreground">
                 <a href="mailto:compassionateng@gmail.com" className="hover:text-primary transition-colors story-link">
                   compassionateng@gmail.com
@@ -63,6 +63,17 @@ const Footer = () => {
               <p className="text-muted-foreground text-sm">
                 North Grenville, Ontario
               </p>
+              <div className="flex items-center space-x-2 pt-2">
+                <a 
+                  href="https://www.facebook.com/compassionatenorthgrenville/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors story-link"
+                >
+                  <Facebook className="w-5 h-5" />
+                  <span>Follow us on Facebook</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
