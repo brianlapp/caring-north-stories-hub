@@ -35,7 +35,7 @@ const HeroSection = () => {
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8 animate-fade-in">
             <Button size="lg" className="text-2xl px-12 py-8 shadow-2xl hover:shadow-xl transition-all font-semibold" asChild>
-              <Link to="/blog">Read Our Stories</Link>
+              <Link to="/blog">Read Our Blog</Link>
             </Button>
             <Button variant="outline" size="lg" className="text-2xl px-12 py-8 bg-white/15 backdrop-blur border-white/40 text-white hover:bg-white/25 shadow-2xl hover:shadow-xl transition-all font-semibold" asChild>
               <Link to="/events">Join an Event</Link>
@@ -52,9 +52,9 @@ const HeroSection = () => {
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Book className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-heading font-semibold mb-4">Share Stories</h3>
+              <h3 className="text-xl font-heading font-semibold mb-4">Read Our Blog</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Discover and share stories of compassion, caregiving, and community connection 
+                Discover weekly stories of compassion, caregiving, and community connection 
                 that inspire and unite us.
               </p>
             </Card>

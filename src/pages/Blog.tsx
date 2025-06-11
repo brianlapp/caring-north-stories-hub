@@ -42,11 +42,11 @@ const Blog = () => {
       <div className="bg-secondary/20 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
-            Community Stories
+            CNG Community Blog
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Real stories of compassion, connection, and care from our North Grenville community. 
-            Each story reminds us that we're not alone in our journey.
+            Weekly stories of compassion, connection, and care from our North Grenville community. 
+            This is where we share updates, insights, and inspiring stories that remind us we're not alone in our journey.
           </p>
         </div>
       </div>
@@ -93,7 +93,7 @@ const Blog = () => {
                   </p>
                   
                   <Button variant="outline" className="group">
-                    Read Full Story
+                    Read Full Post
                     <Heart className="w-4 h-4 ml-2 group-hover:text-accent transition-colors" />
                   </Button>
                 </div>
@@ -105,14 +105,14 @@ const Blog = () => {
         {/* Call to Action */}
         <Card className="mt-16 p-8 bg-primary/5 border-primary/20 text-center">
           <h3 className="text-2xl font-heading font-bold text-foreground mb-4">
-            Share Your Story
+            Contribute to Our Blog
           </h3>
           <p className="text-muted-foreground mb-6 leading-relaxed">
             Do you have a story of compassion, caregiving, or community connection to share? 
-            We'd love to hear from you and help your story inspire others.
+            We'd love to feature your story in our weekly blog posts to inspire others in our community.
           </p>
           <Button size="lg" className="text-lg px-8 py-4" asChild>
-            <a href="/contact">Tell Us Your Story</a>
+            <a href="/contact">Submit Your Story</a>
           </Button>
         </Card>
       </div>

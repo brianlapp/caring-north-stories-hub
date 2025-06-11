@@ -29,15 +29,15 @@ const Index = () => {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Featured Stories */}
+      {/* Featured Blog Posts */}
       <section className="py-20 bg-secondary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              Community Stories
+              Latest from Our Blog
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Discover inspiring stories of compassion and connection from our community members.
+              Discover the latest stories and updates from our community blog, featuring weekly posts about compassion and connection.
             </p>
           </div>
 
@@ -72,7 +72,7 @@ const Index = () => {
           <div className="text-center">
             <Button size="lg" variant="outline" className="text-lg px-8 py-4" asChild>
               <a href="/blog">
-                Read All Stories
+                Visit Our Blog
                 <ArrowRight className="w-5 h-5 ml-2" />
               </a>
             </Button>
