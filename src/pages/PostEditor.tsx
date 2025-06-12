@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { CategorySelect } from '@/components/CategorySelect';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeft, Save, Eye } from 'lucide-react';
@@ -19,6 +20,11 @@ interface PostData {
   content: string;
   published: boolean;
   category_id: string | null;
+}
+
+interface Category {
+  id: string;
+  name: string;
 }
 
 const PostEditor = () => {
@@ -36,7 +42,7 @@ const PostEditor = () => {
     category_id: null,
   });
   
-  const [categories, setCategories] = useState<Array<{id: string, name: string}>>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
@@ -98,6 +104,17 @@ const PostEditor = () => {
       title,
       slug: generateSlug(title),
     }));
+  };
+
+  const handleCategoryChange = (categoryId: string) => {
+    setPost(prev => ({
+      ...prev,
+      category_id: categoryId,
+    }));
+  };
+
+  const handleCategoryCreated = (newCategory: Category) => {
+    setCategories(prev => [...prev, newCategory].sort((a, b) => a.name.localeCompare(b.name)));
   };
 
   const handleSave = async (publish: boolean = false) => {
@@ -214,6 +231,13 @@ const PostEditor = () => {
                 required
               />
             </div>
+
+            <CategorySelect
+              categories={categories}
+              selectedCategoryId={post.category_id}
+              onCategoryChange={handleCategoryChange}
+              onCategoryCreated={handleCategoryCreated}
+            />
 
             <div className="space-y-2">
               <Label htmlFor="excerpt">Excerpt</Label>
