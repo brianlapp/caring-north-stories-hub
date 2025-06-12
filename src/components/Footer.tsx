@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Facebook } from 'lucide-react';
 
@@ -9,9 +10,9 @@ const Footer = () => {
           {/* About */}
           <div>
             <img 
-              src="/lovable-uploads/26a004ca-0a3e-4a08-a8ff-6c5996d5863b.png" 
+              src="/lovable-uploads/7bcc77c2-4881-45b3-9f91-7e5807209ceb.png" 
               alt="Compassionate North Grenville" 
-              className="w-12 h-12 mb-4"
+              className="h-12 w-auto object-contain mb-4"
             />
             <p className="text-muted-foreground leading-relaxed">
               A grassroots initiative fostering care, connection, and community—particularly 
