@@ -157,11 +157,12 @@ const BlogPost = () => {
                 </div>
               )}
 
-              {/* Content */}
+              {/* Content - now renders as HTML */}
               <div className="prose prose-lg max-w-none">
-                <div className="whitespace-pre-wrap text-foreground leading-relaxed">
-                  {post.content}
-                </div>
+                <div 
+                  className="text-foreground leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                />
               </div>
             </div>
           </Card>

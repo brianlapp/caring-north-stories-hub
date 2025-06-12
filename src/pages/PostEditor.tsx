@@ -9,6 +9,7 @@ import { Switch } from '@/components/ui/switch';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { CategorySelect } from '@/components/CategorySelect';
 import { ImageUpload } from '@/components/ImageUpload';
+import RichTextEditor from '@/components/RichTextEditor';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeft, Save, Eye } from 'lucide-react';
@@ -123,6 +124,13 @@ const PostEditor = () => {
     setPost(prev => ({
       ...prev,
       featured_image: imageUrl,
+    }));
+  };
+
+  const handleContentChange = (content: string) => {
+    setPost(prev => ({
+      ...prev,
+      content,
     }));
   };
 
@@ -264,18 +272,11 @@ const PostEditor = () => {
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="content">Content</Label>
-              <Textarea
-                id="content"
-                value={post.content}
-                onChange={(e) => setPost(prev => ({ ...prev, content: e.target.value }))}
-                placeholder="Write your post content here..."
-                rows={15}
-                className="min-h-[400px]"
-                required
-              />
-            </div>
+            <RichTextEditor
+              value={post.content}
+              onChange={handleContentChange}
+              placeholder="Write your post content here..."
+            />
 
             <div className="flex items-center space-x-2">
               <Switch
