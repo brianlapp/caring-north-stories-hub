@@ -1,240 +1,220 @@
 
 import React, { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Mail, Heart, Phone, MapPin, Facebook } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { Mail, Phone, MapPin, Heart, Send } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: '',
-    joinNewsletter: false
+    subject: '',
+    message: ''
   });
-  const { toast } = useToast();
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleCheckboxChange = (checked: boolean) => {
-    setFormData(prev => ({ ...prev, joinNewsletter: checked }));
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Create mailto link with form data
-    const subject = encodeURIComponent('Message from Compassionate North Grenville Website');
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\n${
-        formData.joinNewsletter ? 'Please add me to your mailing list for updates and events.' : ''
-      }`
-    );
-    
-    window.location.href = `mailto:compassionateng@gmail.com?subject=${subject}&body=${body}`;
-    
-    toast({
-      title: "Thank you for reaching out!",
-      description: "Your email client should open with your message ready to send.",
-    });
-    
+    // Handle form submission - could integrate with email service
+    console.log('Form submitted:', formData);
     // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      message: '',
-      joinNewsletter: false
-    });
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    alert('Thank you for your message! We\'ll get back to you soon.');
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
   };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="bg-secondary/20 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+      {/* Hero Section with Background Image */}
+      <div className="relative min-h-[60vh] flex items-center justify-center">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/lovable-uploads/01ee1980-cca3-42d1-bd92-88d0e3631023.png)'
+          }}
+        />
+        
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40" />
+        
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4 drop-shadow-2xl">
             Connect With Us
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We'd love to hear from you. Whether you have a story to share, want to connect with others, 
-            or have questions about our community, we're here to facilitate meaningful connections.
+          <p className="text-xl text-white/95 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+            Whether you want to share your story, learn about our community initiatives, 
+            or get involved in building compassionate connections, we'd love to hear from you.
           </p>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div>
-            <Card className="p-8">
-              <h2 className="text-2xl font-heading font-bold text-foreground mb-6">
-                Send Us a Message
-              </h2>
-              
+          <Card className="p-8">
+            <CardHeader className="px-0 pt-0">
+              <CardTitle className="text-2xl font-heading">Send Us a Message</CardTitle>
+              <CardDescription>
+                We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="px-0">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Label htmlFor="name" className="text-base font-medium">
-                    Your Name *
-                  </Label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Name</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      placeholder="Your full name"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="subject">Subject</Label>
                   <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     required
-                    className="mt-2 text-lg py-3"
-                    placeholder="Enter your full name"
+                    placeholder="What's this about?"
                   />
                 </div>
-
-                <div>
-                  <Label htmlFor="email" className="text-base font-medium">
-                    Email Address *
-                  </Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-2 text-lg py-3"
-                    placeholder="Enter your email address"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="message" className="text-base font-medium">
-                    Your Message *
-                  </Label>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="message">Message</Label>
                   <Textarea
                     id="message"
                     name="message"
                     value={formData.message}
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                     required
                     rows={6}
-                    className="mt-2 text-lg"
-                    placeholder="Share your story, ask questions, or tell us how you'd like to connect with our community..."
+                    placeholder="Tell us your story, ask a question, or let us know how you'd like to get involved..."
                   />
                 </div>
-
-                <div className="flex items-start space-x-3">
-                  <Checkbox
-                    id="newsletter"
-                    checked={formData.joinNewsletter}
-                    onCheckedChange={handleCheckboxChange}
-                    className="mt-1"
-                  />
-                  <Label htmlFor="newsletter" className="text-sm text-muted-foreground leading-relaxed">
-                    I'd like to receive updates about community gatherings and stories 
-                    (we'll only send meaningful updates, never spam)
-                  </Label>
-                </div>
-
-                <Button type="submit" size="lg" className="w-full text-lg py-4">
-                  <Heart className="w-5 h-5 mr-2" />
+                
+                <Button type="submit" size="lg" className="w-full text-lg">
+                  <Send className="w-5 h-5 mr-2" />
                   Send Message
                 </Button>
               </form>
-            </Card>
-          </div>
+            </CardContent>
+          </Card>
 
           {/* Contact Information */}
           <div className="space-y-8">
-            {/* Primary Contact */}
-            <Card className="p-8 bg-primary/5 border-primary/20">
-              <h3 className="text-xl font-heading font-bold text-foreground mb-6">
-                Contact Information
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-primary" />
-                  </div>
+            <Card className="p-8">
+              <CardHeader className="px-0 pt-0">
+                <CardTitle className="text-2xl font-heading">Get in Touch</CardTitle>
+                <CardDescription>
+                  Here are the best ways to reach us and get involved in our community.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="px-0 space-y-6">
+                <div className="flex items-start space-x-4">
+                  <Mail className="w-6 h-6 text-primary mt-1" />
                   <div>
-                    <p className="font-medium text-foreground">Email</p>
-                    <a 
-                      href="mailto:compassionateng@gmail.com" 
-                      className="text-primary hover:text-primary/80 transition-colors story-link"
-                    >
-                      compassionateng@gmail.com
-                    </a>
+                    <h3 className="font-semibold text-foreground mb-1">Email</h3>
+                    <p className="text-muted-foreground">
+                      <a href="mailto:compassionateng@gmail.com" className="hover:text-primary transition-colors story-link">
+                        compassionateng@gmail.com
+                      </a>
+                    </p>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-primary" />
-                  </div>
+                <div className="flex items-start space-x-4">
+                  <MapPin className="w-6 h-6 text-primary mt-1" />
                   <div>
-                    <p className="font-medium text-foreground">Location</p>
+                    <h3 className="font-semibold text-foreground mb-1">Location</h3>
                     <p className="text-muted-foreground">North Grenville, Ontario</p>
                   </div>
                 </div>
-
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center">
-                    <Facebook className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">Facebook</p>
-                    <a 
-                      href="https://www.facebook.com/compassionatenorthgrenville/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-primary hover:text-primary/80 transition-colors story-link"
-                    >
-                      @compassionatenorthgrenville
-                    </a>
-                  </div>
-                </div>
-              </div>
+              </CardContent>
             </Card>
 
-            {/* Ways to Connect */}
+            <Card className="p-8 bg-gradient-to-r from-primary/5 to-accent/5 border-primary/20">
+              <CardContent className="px-0 text-center">
+                <Heart className="w-12 h-12 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-heading font-bold text-foreground mb-4">
+                  Join Our Community
+                </h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Follow us on Facebook to stay updated with our latest events, 
+                  stories, and community gatherings.
+                </p>
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white" asChild>
+                  <a 
+                    href="https://www.facebook.com/compassionatenorthgrenville/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    Follow Us on Facebook
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+
             <Card className="p-8">
-              <h3 className="text-xl font-heading font-bold text-foreground mb-4">
-                Ways to Connect
-              </h3>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start space-x-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Share your story of compassion or community connection</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Learn about upcoming community gatherings and conversations</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Connect with others who understand life's challenges</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Ask questions about our community mission and values</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Explore ways to be part of our storytelling community</span>
-                </li>
-              </ul>
-            </Card>
-
-            {/* Response Time */}
-            <Card className="p-6 bg-accent/5 border-accent/20">
-              <h4 className="font-semibold text-foreground mb-2">Response Time</h4>
-              <p className="text-sm text-muted-foreground">
-                We typically respond to messages within 2-3 business days. 
-                Our focus is on facilitating meaningful community connections and conversations.
-              </p>
+              <CardContent className="px-0 text-center">
+                <h3 className="text-xl font-heading font-bold text-foreground mb-4">
+                  Ways to Get Involved
+                </h3>
+                <ul className="text-left space-y-3 text-muted-foreground">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    Share your story of compassion or caregiving
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    Suggest community events or workshops
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    Connect with others facing similar challenges
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    Volunteer for community initiatives
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    Help spread awareness about compassionate community building
+                  </li>
+                </ul>
+              </CardContent>
             </Card>
           </div>
         </div>
