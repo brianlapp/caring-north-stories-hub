@@ -65,11 +65,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (error) {
         console.error('Error in setup-first-admin:', error);
-        toast({
-          title: "Admin Setup Failed",
-          description: "There was an issue setting up admin access. You can try manual setup.",
-          variant: "destructive",
-        });
         return false;
       }
 
@@ -86,11 +81,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return false;
     } catch (error) {
       console.error('Error calling setup-first-admin function:', error);
-      toast({
-        title: "Setup Error",
-        description: "Failed to connect to admin setup service.",
-        variant: "destructive",
-      });
       return false;
     }
   };
@@ -108,7 +98,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     console.log('Manual admin setup requested for:', session.user.email);
     
     try {
-      // First check if there are any existing admins
+      // Check if there are any existing admins
       const { data: existingAdmins, error: checkError } = await supabase
         .from('admin_users')
         .select('id')
@@ -152,7 +142,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
         console.log('Auth event:', event, session?.user?.email);
         
         if (!mounted) return;
@@ -162,27 +152,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         
         if (session?.user) {
           console.log('User is authenticated, checking admin status...');
-          
-          // For email confirmation events, try to setup first admin
-          if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
-            try {
-              const isExistingAdmin = await checkAdminStatus(session.user.id);
-              console.log('Is existing admin:', isExistingAdmin);
-              
-              // If not already admin, try to set up as first admin
-              if (!isExistingAdmin) {
-                console.log('Not existing admin, trying to setup first admin...');
-                await setupFirstAdmin(session);
-                // Re-check admin status after setup attempt
-                await checkAdminStatus(session.user.id);
-              }
-            } catch (error) {
-              console.error('Error in auth state change handling:', error);
+          // Only check admin status for authenticated users
+          setTimeout(() => {
+            if (mounted) {
+              checkAdminStatus(session.user.id);
             }
-          } else {
-            // For other events, just check admin status
-            await checkAdminStatus(session.user.id);
-          }
+          }, 0);
         } else {
           console.log('No user session, setting admin to false');
           setIsAdmin(false);
@@ -196,7 +171,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     );
 
     // Get initial session
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
       if (!mounted) return;
       
       console.log('Initial session check:', session?.user?.email);
@@ -205,11 +180,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
       if (session?.user) {
         console.log('Initial session has user, checking admin status...');
-        try {
-          await checkAdminStatus(session.user.id);
-        } catch (error) {
-          console.error('Error in initial admin check:', error);
-        }
+        setTimeout(() => {
+          if (mounted) {
+            checkAdminStatus(session.user.id);
+          }
+        }, 0);
       }
       
       console.log('Initial session check complete, setting loading to false');
@@ -233,7 +208,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signUp = async (email: string, password: string, name: string) => {
-    // Use the current origin instead of hardcoded localhost
     const redirectUrl = `${window.location.origin}/auth?type=signup`;
     
     const { error } = await supabase.auth.signUp({
