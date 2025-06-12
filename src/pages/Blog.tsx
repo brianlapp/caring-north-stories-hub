@@ -12,6 +12,7 @@ interface BlogPost {
   excerpt: string;
   created_at: string;
   slug: string;
+  featured_image: string | null;
   categories: { name: string } | null;
 }
 
@@ -33,6 +34,7 @@ const Blog = () => {
           excerpt,
           created_at,
           slug,
+          featured_image,
           categories:category_id (name)
         `)
         .eq('published', true)
@@ -81,6 +83,17 @@ const Blog = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
               <Card key={post.id} className="group overflow-hidden hover-scale transition-all duration-300 hover:shadow-xl border-0 shadow-lg bg-card flex flex-col">
+                {/* Featured Image */}
+                {post.featured_image && (
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={post.featured_image}
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
+
                 {/* Content */}
                 <div className="p-6 flex flex-col flex-grow">
                   {/* Meta Info */}

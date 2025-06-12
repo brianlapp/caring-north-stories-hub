@@ -15,6 +15,7 @@ interface BlogPostData {
   published_at: string;
   created_at: string;
   author_name: string;
+  featured_image: string | null;
   categories: { name: string } | null;
 }
 
@@ -42,6 +43,7 @@ const BlogPost = () => {
           published_at,
           created_at,
           author_name,
+          featured_image,
           categories:category_id (name)
         `)
         .eq('slug', id)
@@ -104,6 +106,17 @@ const BlogPost = () => {
         {/* Article */}
         <article>
           <Card className="overflow-hidden">
+            {/* Featured Image */}
+            {post.featured_image && (
+              <div className="aspect-video w-full overflow-hidden">
+                <img
+                  src={post.featured_image}
+                  alt={post.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+
             <div className="p-8 md:p-12">
               {/* Category Badge */}
               {post.categories && (
