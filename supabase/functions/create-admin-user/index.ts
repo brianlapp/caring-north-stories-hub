@@ -63,7 +63,78 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log('Creating admin user:', { email, name, role });
 
-    // Create the user account
+    // First check if user already exists in auth.users
+    const { data: existingUser, error: checkError } = await supabaseAdmin.auth.admin.getUserByEmail(email);
+    
+    if (existingUser && existingUser.user) {
+      console.log('User already exists in auth.users:', existingUser.user.id);
+      
+      // Check if they already have admin privileges
+      const { data: existingAdmin, error: adminCheckError } = await supabaseAdmin
+        .from('admin_users')
+        .select('*')
+        .eq('user_id', existingUser.user.id)
+        .maybeSingle();
+
+      if (adminCheckError) {
+        console.error('Error checking existing admin:', adminCheckError);
+        throw new Error('Failed to check existing admin status');
+      }
+
+      if (existingAdmin) {
+        return new Response(
+          JSON.stringify({
+            error: `User ${email} already has admin privileges with role: ${existingAdmin.role}`
+          }),
+          {
+            status: 400,
+            headers: {
+              'Content-Type': 'application/json',
+              ...corsHeaders,
+            },
+          }
+        );
+      }
+
+      // User exists but doesn't have admin privileges, add them
+      const { data: adminRecord, error: adminInsertError } = await supabaseAdmin
+        .from('admin_users')
+        .insert({
+          user_id: existingUser.user.id,
+          email: email,
+          name: name,
+          role: role,
+        })
+        .select()
+        .single();
+
+      if (adminInsertError) {
+        console.error('Error creating admin record for existing user:', adminInsertError);
+        throw new Error(`Failed to grant admin privileges: ${adminInsertError.message}`);
+      }
+
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message: 'Admin privileges granted to existing user',
+          user: {
+            id: existingUser.user.id,
+            email: adminRecord.email,
+            name: adminRecord.name,
+            role: adminRecord.role,
+          },
+        }),
+        {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json',
+            ...corsHeaders,
+          },
+        }
+      );
+    }
+
+    // Create the user account (only if they don't exist)
     const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
       email,
       password,
