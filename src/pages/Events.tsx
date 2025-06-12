@@ -49,16 +49,30 @@ const Events = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="bg-secondary/20 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
-            Community Events
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Meaningful gatherings where we share stories, support one another, 
-            and build lasting connections in our community.
-          </p>
+      {/* Hero Section with Background Image */}
+      <div className="relative overflow-hidden">
+        <div className="relative min-h-[60vh] flex items-center justify-center">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: 'url(/lovable-uploads/133579d3-8006-44ad-8a67-540588d8ba2a.png)'
+            }}
+          />
+          
+          {/* Dark Overlay for Text Readability */}
+          <div className="absolute inset-0 bg-black/40" />
+          
+          {/* Hero Text Content */}
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl md:text-6xl font-heading font-bold text-white mb-6 animate-fade-in drop-shadow-2xl leading-tight">
+              Community Events
+            </h1>
+            <p className="text-xl md:text-2xl text-white/95 mb-8 leading-relaxed animate-fade-in max-w-4xl mx-auto drop-shadow-lg font-medium">
+              Meaningful gatherings where we share stories, support one another, 
+              and build lasting connections in our community.
+            </p>
+          </div>
         </div>
       </div>
 
