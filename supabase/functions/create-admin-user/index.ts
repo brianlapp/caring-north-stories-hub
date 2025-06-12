@@ -102,9 +102,67 @@ const handler = async (req: Request): Promise<Response> => {
         );
       }
 
-      // User exists in auth but not in admin_users, we need to find their user_id
-      // We'll try to get all admin users and see if we can find a pattern or use a different approach
-      throw new Error(`User ${email} exists in authentication but we cannot grant admin privileges without their user ID. Please contact support.`);
+      // User exists in auth but not in admin_users, let's find their user_id and grant admin privileges
+      console.log('User exists in auth but not in admin_users, granting admin privileges...');
+      
+      // Use a SQL query to find the user ID and insert admin record in one operation
+      const { data: adminRecord, error: grantError } = await supabaseAdmin
+        .rpc('grant_admin_to_existing_user', {
+          user_email: email,
+          user_name: name,
+          user_role: role
+        });
+
+      if (grantError) {
+        console.error('Error granting admin to existing user:', grantError);
+        
+        // Fallback: try direct insert with a subquery
+        const { data: insertResult, error: insertError } = await supabaseAdmin
+          .from('admin_users')
+          .insert({
+            user_id: `(SELECT id FROM auth.users WHERE email = '${email}')`,
+            email: email,
+            name: name,
+            role: role,
+          })
+          .select()
+          .single();
+
+        if (insertError) {
+          console.error('Fallback insert also failed:', insertError);
+          throw new Error(`Cannot grant admin privileges to existing user ${email}. Please contact support.`);
+        }
+
+        return new Response(
+          JSON.stringify({
+            success: true,
+            message: 'Admin privileges granted to existing user',
+            user: insertResult,
+          }),
+          {
+            status: 200,
+            headers: {
+              'Content-Type': 'application/json',
+              ...corsHeaders,
+            },
+          }
+        );
+      }
+
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message: 'Admin privileges granted to existing user',
+          user: adminRecord,
+        }),
+        {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json',
+            ...corsHeaders,
+          },
+        }
+      );
     }
 
     // If there's another error during user creation, throw it
