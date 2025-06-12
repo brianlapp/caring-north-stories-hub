@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { CategorySelect } from '@/components/CategorySelect';
+import { ImageUpload } from '@/components/ImageUpload';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeft, Save, Eye } from 'lucide-react';
@@ -20,6 +20,7 @@ interface PostData {
   content: string;
   published: boolean;
   category_id: string | null;
+  featured_image: string | null;
 }
 
 interface Category {
@@ -40,6 +41,7 @@ const PostEditor = () => {
     content: '',
     published: false,
     category_id: null,
+    featured_image: null,
   });
   
   const [categories, setCategories] = useState<Category[]>([]);
@@ -115,6 +117,13 @@ const PostEditor = () => {
 
   const handleCategoryCreated = (newCategory: Category) => {
     setCategories(prev => [...prev, newCategory].sort((a, b) => a.name.localeCompare(b.name)));
+  };
+
+  const handleImageChange = (imageUrl: string | null) => {
+    setPost(prev => ({
+      ...prev,
+      featured_image: imageUrl,
+    }));
   };
 
   const handleSave = async (publish: boolean = false) => {
@@ -237,6 +246,11 @@ const PostEditor = () => {
               selectedCategoryId={post.category_id}
               onCategoryChange={handleCategoryChange}
               onCategoryCreated={handleCategoryCreated}
+            />
+
+            <ImageUpload
+              value={post.featured_image}
+              onChange={handleImageChange}
             />
 
             <div className="space-y-2">
