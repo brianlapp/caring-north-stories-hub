@@ -98,7 +98,7 @@ const DocsImages = () => {
                 <div className="p-4 border rounded-lg bg-red-50 border-red-200">
                   <p className="font-medium text-red-900 mb-2">Don't:</p>
                   <ul className="text-sm text-red-700 space-y-1">
-                    <li>• Upload extremely large files (>5MB)</li>
+                    <li>• Upload extremely large files (&gt;5MB)</li>
                     <li>• Use blurry or pixelated images</li>
                     <li>• Include copyrighted content</li>
                     <li>• Overload posts with too many images</li>
