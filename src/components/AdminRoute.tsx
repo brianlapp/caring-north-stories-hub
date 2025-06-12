@@ -2,14 +2,14 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
-import { ShieldX } from 'lucide-react';
+import { ShieldX, Settings } from 'lucide-react';
 
 interface AdminRouteProps {
   children: React.ReactNode;
 }
 
 export default function AdminRoute({ children }: AdminRouteProps) {
-  const { user, isAdmin, loading } = useAuth();
+  const { user, isAdmin, loading, setupManualAdmin } = useAuth();
 
   if (loading) {
     return (
@@ -35,12 +35,16 @@ export default function AdminRoute({ children }: AdminRouteProps) {
           <p className="text-muted-foreground mb-6">
             You don't have administrator access to this area. Only verified administrators can access the blog management system.
           </p>
-          <div className="space-y-2">
-            <Button asChild className="w-full">
+          <div className="space-y-4">
+            <Button onClick={setupManualAdmin} className="w-full">
+              <Settings className="w-4 h-4 mr-2" />
+              Set Up as First Admin
+            </Button>
+            <Button variant="outline" asChild className="w-full">
               <a href="/">Return to Home</a>
             </Button>
             <p className="text-sm text-muted-foreground">
-              Contact the site administrator to request access.
+              If you're the first user, click "Set Up as First Admin". Otherwise, contact the site administrator to request access.
             </p>
           </div>
         </div>
