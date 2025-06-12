@@ -114,7 +114,7 @@ const Docs = () => {
 
         {/* Footer */}
         <div className="mt-12 text-center text-sm text-muted-foreground">
-          <p>Created for the CNG Committee • Last updated: December 2024</p>
+          <p>Created for the CNG Committee • Last updated: 2025</p>
           <p className="mt-1">
             Questions? Contact your site administrator or visit{' '}
             <a href="/" className="text-primary hover:underline">
