@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Mail, Heart, Users, Lightbulb, Shield, Eye, Handshake, CheckCircle } from 'lucide-react';
+import { ArrowRight, Mail, Heart, Users, Lightbulb, Shield, Eye, Handshake, CheckCircle, ExternalLink } from 'lucide-react';
 
 const About = () => {
   const values = [
@@ -69,6 +69,52 @@ const About = () => {
     {
       title: "Continuous Growth",
       description: "Annual reviews of these aspirations with the intention of expanding the scope of compassion throughout North Grenville. This is a living document which will be revised as needed."
+    }
+  ];
+
+  const references = [
+    {
+      number: 1,
+      text: "Compassionate Communities Australia. [Online] July, 2024.",
+      url: "https://compassionatecommunities.au/"
+    },
+    {
+      number: 2,
+      text: "Sallnow, L., Smith, R., Ahmedzai, S. H., Bhadelia, A., Chamberlain, C., Cong, Y, Doble, B., Dullie, Durie, L.R., Finkelstein, E. A., Guglani, S., Hodson, M., Husebø, B.S., Kellehear, A., Kitzinger, C., Knaul, F.M., Murray, S.A., Neuberger, J., O'Mahony, S., Rajagopal, M.R., Russell, S., Sase, E., Sleeman, K.E., Solomon, S., Taylor, R., Tutu van Furth, M., Wyatt, K., on behalf of the Lancet Commission on the Value of Death. (2022). Report of the Lancet Commission on the Value of Death: bringing death back into life. Lancet, 26 February-4 March; 399(10327): 837–884."
+    },
+    {
+      number: 3,
+      text: "Kellehear A. (2022). The social nature of dying and the social model of health. In: Abel J, Kellehear A. (eds). Oxford Textbook of Public Health Palliative Care. Oxford: Oxford University Press."
+    },
+    {
+      number: 4,
+      text: "Ontario Provincial Framework for Palliative Care. [Online] July 2024",
+      filename: "moh-ontario-provincial-framework-for-palliative-care-en-2021-12-07.pdf"
+    },
+    {
+      number: 5,
+      text: "Municipality of North Grenville. (2023). Long-Term Population, Housing and Employment Study. [Online] August, 2024.",
+      url: "https://www.northgrenville.ca/component/edocman/north-grenville-population-housing-employment-forecast-13-dec-23/viewdocument/472"
+    },
+    {
+      number: 6,
+      text: "Statistics Canada. Focus on Geography Series, 2021 Census of Population North Grenville, Municipality: Population and dwelling counts. [Online] July, 2024",
+      url: "https://www12.statcan.gc.ca/census-recensement/2021/as-sa/fogs-spg/Page.cfm?lang=e&topic=1&dguid=2021A00053507065"
+    },
+    {
+      number: 7,
+      text: "Nelson and District Hospice Society, British Columbia. [Online] July 2024.",
+      url: "https://nelsonhospice.org/"
+    },
+    {
+      number: 8,
+      text: "Tervalon M, Murray-Garcia J. (1998). Cultural humility versus cultural competence: A critical distinction in defining physician training outcomes in multicultural education. Journal of Health Care for the Poor and Underserved. 9(2):117–125.",
+      url: "http://dx.doi.org/10.1353/hpu.2010.0233"
+    },
+    {
+      number: 9,
+      text: "Julian Abel & Allan Kellehear's 2021, The Compassionate City: A Charter of Actions. [Online] August, 2024.",
+      url: "https://static1.squarespace.com/static/57f61928d2b857de53f3b0a6/t/60041858c580bf115da024e3/1610881113850/CCCharter2021.pdf"
     }
   ];
 
@@ -182,6 +228,48 @@ const About = () => {
               </div>
             ))}
           </div>
+        </Card>
+
+        {/* References */}
+        <Card className="p-8 mb-16">
+          <h2 className="text-3xl font-heading font-bold text-foreground mb-8 text-center">
+            References
+          </h2>
+          <div className="grid gap-4">
+            {references.map((reference, index) => (
+              <div key={index} className="flex items-start gap-4 p-4 rounded-lg bg-secondary/5 hover:bg-secondary/10 transition-colors border border-border/50">
+                <div className="flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-primary font-semibold text-xs">{reference.number}</span>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <p className="text-muted-foreground leading-relaxed text-sm">
+                    {reference.text}
+                    {reference.filename && (
+                      <span className="block mt-1 font-medium text-foreground">
+                        {reference.filename}
+                      </span>
+                    )}
+                  </p>
+                  {reference.url && (
+                    <a 
+                      href={reference.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 mt-2 text-primary hover:text-primary/80 text-sm font-medium transition-colors"
+                    >
+                      View Source
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-muted-foreground mt-6 text-center italic">
+            Adapted from Julian Abel & Allan Kellehear's 2021, The Compassionate City: A Charter of Actions
+          </p>
         </Card>
 
         {/* Community Images */}
