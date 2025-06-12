@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Heart, User, Edit, Image, Upload, Users, Eye } from 'lucide-react';
+import { User, Edit, Image, Upload, Users, Eye } from 'lucide-react';
 
 const Docs = () => {
   const guides = [
@@ -49,7 +49,11 @@ const Docs = () => {
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 py-8">
           <div className="flex items-center gap-3 mb-4">
-            <Heart className="w-8 h-8 text-primary" />
+            <img 
+              src="/lovable-uploads/7a33230c-4c65-4a6d-b226-eba7a51b4ef3.png" 
+              alt="Compassionate North Grenville Logo" 
+              className="w-8 h-8 object-contain"
+            />
             <h1 className="text-3xl font-heading font-bold">CNG Admin Documentation</h1>
           </div>
           <p className="text-muted-foreground text-lg">
