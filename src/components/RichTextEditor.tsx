@@ -66,8 +66,10 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
         const quill = quillRef.current?.getEditor();
         if (quill) {
           const range = quill.getSelection(true);
-          quill.insertEmbed(range.index, 'image', publicUrl);
-          quill.setSelection(range.index + 1);
+          if (range) {
+            quill.insertEmbed(range.index, 'image', publicUrl);
+            quill.setSelection(range.index + 1);
+          }
         }
 
         toast.success('Image uploaded successfully');
