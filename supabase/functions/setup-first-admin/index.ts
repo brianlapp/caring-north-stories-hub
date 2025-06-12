@@ -28,6 +28,8 @@ serve(async (req) => {
       throw new Error('Unauthorized');
     }
 
+    console.log('User attempting admin setup:', user.email, user.user_metadata);
+
     // Check if there are any existing admin users
     const { data: existingAdmins, error: adminCheckError } = await supabaseClient
       .from('admin_users')
@@ -35,26 +37,32 @@ serve(async (req) => {
       .limit(1);
 
     if (adminCheckError) {
+      console.error('Error checking existing admins:', adminCheckError);
       throw adminCheckError;
     }
 
     // If no admin users exist, make this user the first admin
     if (!existingAdmins || existingAdmins.length === 0) {
+      // Get the user's name from metadata, fallback to email if not available
+      const userName = user.user_metadata?.name || user.user_metadata?.full_name || user.email?.split('@')[0] || 'Admin User';
+      
       const { error: insertError } = await supabaseClient
         .from('admin_users')
         .insert([
           {
             user_id: user.id,
             email: user.email,
+            name: userName,
             created_at: new Date().toISOString()
           }
         ]);
 
       if (insertError) {
+        console.error('Error inserting admin user:', insertError);
         throw insertError;
       }
 
-      console.log(`First admin user created: ${user.email}`);
+      console.log(`First admin user created: ${user.email} (${userName})`);
       
       return new Response(
         JSON.stringify({ 
