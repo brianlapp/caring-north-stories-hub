@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, useCallback, useMemo } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Label } from '@/components/ui/label';
@@ -21,8 +21,21 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
 }) => {
   const quillRef = useRef<ReactQuill>(null);
 
+  // Debounced onChange to prevent rapid re-renders
+  const debouncedOnChange = useCallback(
+    (content: string) => {
+      // Use a small delay to prevent rapid state updates
+      const timeoutId = setTimeout(() => {
+        onChange(content);
+      }, 100);
+      
+      return () => clearTimeout(timeoutId);
+    },
+    [onChange]
+  );
+
   // Image upload handler
-  const handleImageUpload = async () => {
+  const handleImageUpload = useCallback(async () => {
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
     input.setAttribute('accept', 'image/*');
@@ -78,9 +91,10 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
         toast.error('Failed to upload image');
       }
     };
-  };
+  }, []);
 
-  const modules = {
+  // Memoize modules to prevent recreation on every render
+  const modules = useMemo(() => ({
     toolbar: {
       container: [
         [{ 'header': [1, 2, 3, false] }],
@@ -93,24 +107,29 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
         image: handleImageUpload
       }
     },
-  };
+  }), [handleImageUpload]);
 
-  const formats = [
+  // Memoize formats to prevent recreation
+  const formats = useMemo(() => [
     'header',
     'bold', 'italic', 'underline',
     'list', 'bullet',
     'link', 'image'
-  ];
+  ], []);
+
+  // Stable key to prevent unnecessary remounts
+  const editorKey = useMemo(() => `rich-text-editor-${label}`, [label]);
 
   return (
     <div className="space-y-2">
       <Label htmlFor="content">{label}</Label>
-      <div className="min-h-[400px]">
+      <div className="min-h-[400px] relative">
         <ReactQuill
+          key={editorKey}
           ref={quillRef}
           theme="snow"
           value={value}
-          onChange={onChange}
+          onChange={debouncedOnChange}
           placeholder={placeholder}
           modules={modules}
           formats={formats}
@@ -118,6 +137,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
             height: '350px',
             marginBottom: '50px'
           }}
+          preserveWhitespace={false}
         />
       </div>
     </div>
