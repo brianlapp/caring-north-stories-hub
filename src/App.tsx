@@ -18,6 +18,9 @@ import Calendar from "./pages/Calendar";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import PostEditor from "./pages/PostEditor";
+import Docs from "./pages/Docs";
+import DocsLogin from "./pages/DocsLogin";
+import DocsCreatePost from "./pages/DocsCreatePost";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +35,11 @@ const App = () => (
           <Routes>
             {/* Auth routes */}
             <Route path="/auth" element={<Auth />} />
+            
+            {/* Documentation routes */}
+            <Route path="/docs" element={<Docs />} />
+            <Route path="/docs/login" element={<DocsLogin />} />
+            <Route path="/docs/create-post" element={<DocsCreatePost />} />
             
             {/* Admin routes */}
             <Route path="/admin" element={
