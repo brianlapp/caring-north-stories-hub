@@ -8,14 +8,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <img 
-                src="/lovable-uploads/26a004ca-0a3e-4a08-a8ff-6c5996d5863b.png" 
-                alt="Compassionate North Grenville" 
-                className="w-6 h-6"
-              />
-              <h3 className="text-xl font-heading font-semibold">Compassionate North Grenville</h3>
-            </div>
+            <img 
+              src="/lovable-uploads/26a004ca-0a3e-4a08-a8ff-6c5996d5863b.png" 
+              alt="Compassionate North Grenville" 
+              className="w-12 h-12 mb-4"
+            />
             <p className="text-muted-foreground leading-relaxed">
               A grassroots initiative fostering care, connection, and community—particularly 
               during caregiving, illness, dying, and grief.
