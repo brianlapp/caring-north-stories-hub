@@ -119,6 +119,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signUp = async (email: string, password: string, name: string) => {
+    // Use the current origin instead of hardcoded localhost
     const redirectUrl = `${window.location.origin}/auth?type=signup`;
     
     const { error } = await supabase.auth.signUp({
