@@ -111,7 +111,7 @@ const BlogPost = () => {
               <div className="aspect-video w-full overflow-hidden">
                 <img
                   src={post.featured_image}
-                  alt={post.title}
+                  alt={`Featured image for blog post: ${post.title}`}
                   className="w-full h-full object-cover"
                 />
               </div>

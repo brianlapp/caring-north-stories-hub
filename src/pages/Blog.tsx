@@ -61,6 +61,8 @@ const Blog = () => {
           style={{
             backgroundImage: 'url(/lovable-uploads/01ee1980-cca3-42d1-bd92-88d0e3631023.png)'
           }}
+          role="img"
+          aria-label="Scenic view of North Grenville landscape with rolling hills, trees, and open fields representing the peaceful community we serve"
         />
         
         {/* Dark Overlay for Text Readability */}
@@ -102,7 +104,7 @@ const Blog = () => {
                   <div className="aspect-video overflow-hidden">
                     <img 
                       src={post.featured_image} 
-                      alt={post.title} 
+                      alt={`Featured image for blog post: ${post.title}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
                     />
                   </div>

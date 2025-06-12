@@ -16,6 +16,8 @@ const HeroSection = () => {
           style={{
             backgroundImage: 'url(/lovable-uploads/ea55427a-374d-46df-8e09-f4e384822ddd.png)'
           }}
+          role="img"
+          aria-label="Aerial view of North Grenville community with trees, roads, and residential areas showcasing the beautiful landscape of our compassionate community"
         />
         
         {/* Dark Overlay for Text Readability */}
@@ -50,7 +52,7 @@ const HeroSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in">
             <Card className="p-8 text-center hover-scale bg-card border-border">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Book className="w-8 h-8 text-primary" />
+                <Book className="w-8 h-8 text-primary" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-heading font-semibold mb-4">Read Our Blog</h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -61,7 +63,7 @@ const HeroSection = () => {
 
             <Card className="p-8 text-center hover-scale bg-card border-border">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Calendar className="w-8 h-8 text-accent" />
+                <Calendar className="w-8 h-8 text-accent" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-heading font-semibold mb-4">Join Events</h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -72,7 +74,7 @@ const HeroSection = () => {
 
             <Card className="p-8 text-center hover-scale bg-card border-border">
               <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Heart className="w-8 h-8 text-primary" />
+                <Heart className="w-8 h-8 text-primary" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-heading font-semibold mb-4">Build Community</h3>
               <p className="text-muted-foreground leading-relaxed">

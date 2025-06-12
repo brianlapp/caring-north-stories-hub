@@ -16,6 +16,8 @@ const Calendar = () => {
           style={{
             backgroundImage: 'url(/lovable-uploads/01ee1980-cca3-42d1-bd92-88d0e3631023.png)'
           }}
+          role="img"
+          aria-label="Beautiful North Grenville countryside with rolling hills and farmland, representing the peaceful community where our events take place"
         />
         
         {/* Dark Overlay for Text Readability */}

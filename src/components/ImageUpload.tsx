@@ -75,7 +75,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
         <div className="relative">
           <img
             src={value}
-            alt="Featured image"
+            alt="Featured image preview for blog post"
             className="w-full h-48 object-cover rounded-lg border"
           />
           <Button
@@ -84,6 +84,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
             size="icon"
             className="absolute top-2 right-2"
             onClick={handleRemove}
+            aria-label="Remove featured image"
           >
             <X className="w-4 h-4" />
           </Button>
@@ -91,7 +92,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
       ) : (
         <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-6">
           <div className="text-center">
-            <Image className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
+            <Image className="mx-auto h-12 w-12 text-muted-foreground mb-4" aria-hidden="true" />
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">
                 Drop an image here or click to browse
@@ -103,6 +104,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                 disabled={uploading}
                 className="hidden"
                 id="image-upload"
+                aria-label="Upload image file"
               />
               <Button
                 type="button"
