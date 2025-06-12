@@ -86,7 +86,7 @@ const About = () => {
           />
           
           {/* Dark Overlay for Text Readability */}
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/60" />
           
           {/* Hero Text Content */}
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
