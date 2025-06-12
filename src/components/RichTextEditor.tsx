@@ -68,7 +68,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
           const range = quill.getSelection(true);
           if (range) {
             quill.insertEmbed(range.index, 'image', publicUrl);
-            quill.setSelection(range.index + 1);
+            quill.setSelection(range.index + 1, 0);
           }
         }
 
