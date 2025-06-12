@@ -8,13 +8,25 @@ const Calendar = () => {
   
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="bg-secondary/20 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+      {/* Hero Section with Background Image */}
+      <div className="relative min-h-[60vh] flex items-center justify-center">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/lovable-uploads/01ee1980-cca3-42d1-bd92-88d0e3631023.png)'
+          }}
+        />
+        
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40" />
+        
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4 drop-shadow-2xl">
             Community Calendar
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-white/95 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
             Stay connected with all our upcoming events, gatherings, and community activities.
           </p>
         </div>
