@@ -45,6 +45,7 @@ serve(async (req) => {
         .insert([
           {
             user_id: user.id,
+            email: user.email,
             created_at: new Date().toISOString()
           }
         ]);
