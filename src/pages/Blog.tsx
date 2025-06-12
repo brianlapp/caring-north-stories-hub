@@ -1,37 +1,51 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, Heart } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { Link } from 'react-router-dom';
+
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  created_at: string;
+  slug: string;
+  categories: { name: string } | null;
+}
 
 const Blog = () => {
-  // Sample blog posts - in a real app, these would come from a CMS or database
-  const blogPosts = [
-    {
-      id: 1,
-      title: "Finding Grace in Caregiving: Sarah's Journey",
-      excerpt: "When Sarah's mother was diagnosed with dementia, she thought her world was ending. Instead, she discovered a community of support and unexpected moments of joy that transformed both their lives.",
-      date: "2024-06-08",
-      category: "Caregiving Stories",
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800&h=400&fit=crop"
-    },
-    {
-      id: 2,
-      title: "The Power of Presence: Lessons from Community Connections",
-      excerpt: "Sometimes the most powerful thing we can offer someone facing loss is simply being there. Community members share what they've learned about the gift of presence and meaningful connection.",
-      date: "2024-06-01",
-      category: "Community Wisdom",
-      image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&h=400&fit=crop"
-    },
-    {
-      id: 3,
-      title: "Youngsters of Yore: Stories from Our Elders",
-      excerpt: "In our community storytelling circles, local elders share memories that remind us of the enduring power of human connection across generations.",
-      date: "2024-05-25",
-      category: "Elder Wisdom",
-      image: "https://images.unsplash.com/photo-1439886183900-e79ec0057170?w=800&h=400&fit=crop"
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select(`
+          id,
+          title,
+          excerpt,
+          created_at,
+          slug,
+          categories:category_id (name)
+        `)
+        .eq('published', true)
+        .order('published_at', { ascending: false });
+
+      if (error) throw error;
+      setPosts(data || []);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -50,59 +64,61 @@ const Blog = () => {
 
       {/* Blog Posts */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post) => (
-            <Card key={post.id} className="group overflow-hidden hover-scale transition-all duration-300 hover:shadow-xl border-0 shadow-lg bg-card flex flex-col">
-              {/* Image */}
-              <div className="relative overflow-hidden">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="inline-block bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                    {post.category}
-                  </span>
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading posts...</p>
+          </div>
+        ) : posts.length === 0 ? (
+          <div className="text-center py-12">
+            <Heart className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+            <h2 className="text-2xl font-heading font-bold mb-4">No Posts Yet</h2>
+            <p className="text-muted-foreground mb-6">
+              Our community blog posts will appear here soon. Check back for inspiring stories and updates!
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post) => (
+              <Card key={post.id} className="group overflow-hidden hover-scale transition-all duration-300 hover:shadow-xl border-0 shadow-lg bg-card flex flex-col">
+                {/* Content */}
+                <div className="p-6 flex flex-col flex-grow">
+                  {/* Meta Info */}
+                  <div className="flex items-center text-xs text-muted-foreground mb-3">
+                    <Calendar className="w-3 h-3 mr-1" />
+                    <span>{new Date(post.created_at).toLocaleDateString('en-US', { 
+                      month: 'short', 
+                      day: 'numeric' 
+                    })}</span>
+                    {post.categories && (
+                      <>
+                        <span className="mx-2">•</span>
+                        <span>{post.categories.name}</span>
+                      </>
+                    )}
+                  </div>
+                  
+                  {/* Title */}
+                  <h2 className="text-lg font-heading font-bold text-foreground mb-3 line-clamp-2 story-link group-hover:text-primary transition-colors">
+                    <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+                  </h2>
+                  
+                  {/* Excerpt */}
+                  {post.excerpt && (
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3 flex-grow">
+                      {post.excerpt}
+                    </p>
+                  )}
+
+                  {/* Read More Button - Full Width */}
+                  <Button className="w-full mt-auto" asChild>
+                    <Link to={`/blog/${post.slug}`}>Read More</Link>
+                  </Button>
                 </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6 flex flex-col flex-grow">
-                {/* Meta Info */}
-                <div className="flex items-center text-xs text-muted-foreground mb-3">
-                  <Calendar className="w-3 h-3 mr-1" />
-                  <span>{new Date(post.date).toLocaleDateString('en-US', { 
-                    month: 'short', 
-                    day: 'numeric' 
-                  })}</span>
-                </div>
-                
-                {/* Title */}
-                <h2 className="text-lg font-heading font-bold text-foreground mb-3 line-clamp-2 story-link group-hover:text-primary transition-colors">
-                  <a href={`/blog/${post.id}`}>{post.title}</a>
-                </h2>
-                
-                {/* Excerpt */}
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3 flex-grow">
-                  {post.excerpt}
-                </p>
-
-                {/* Read More Button - Full Width */}
-                <Button className="w-full mt-auto" asChild>
-                  <a href={`/blog/${post.id}`}>Read More</a>
-                </Button>
-              </div>
-            </Card>
-          ))}
-        </div>
-
-        {/* Load More Button */}
-        <div className="text-center mt-12">
-          <Button variant="outline" size="lg" className="px-8">
-            Load More Posts
-          </Button>
-        </div>
+              </Card>
+            ))}
+          </div>
+        )}
 
         {/* Call to Action */}
         <Card className="mt-16 p-8 bg-gradient-to-r from-primary/5 to-accent/5 border-primary/20 text-center">
@@ -115,7 +131,7 @@ const Blog = () => {
             We'd love to feature your story in our weekly blog posts to inspire others in our community.
           </p>
           <Button size="lg" className="text-lg px-8 py-4" asChild>
-            <a href="/contact">Submit Your Story</a>
+            <Link to="/contact">Submit Your Story</Link>
           </Button>
         </Card>
       </div>
