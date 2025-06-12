@@ -21,6 +21,9 @@ import PostEditor from "./pages/PostEditor";
 import Docs from "./pages/Docs";
 import DocsLogin from "./pages/DocsLogin";
 import DocsCreatePost from "./pages/DocsCreatePost";
+import DocsImages from "./pages/DocsImages";
+import DocsPublishing from "./pages/DocsPublishing";
+import DocsUserManagement from "./pages/DocsUserManagement";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +43,9 @@ const App = () => (
             <Route path="/docs" element={<Docs />} />
             <Route path="/docs/login" element={<DocsLogin />} />
             <Route path="/docs/create-post" element={<DocsCreatePost />} />
+            <Route path="/docs/images" element={<DocsImages />} />
+            <Route path="/docs/publishing" element={<DocsPublishing />} />
+            <Route path="/docs/user-management" element={<DocsUserManagement />} />
             
             {/* Admin routes */}
             <Route path="/admin" element={
