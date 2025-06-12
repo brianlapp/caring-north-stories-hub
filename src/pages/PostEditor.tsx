@@ -46,7 +46,7 @@ const PostEditor = () => {
     if (isEditing) {
       fetchPost();
     }
-  }, [id]);
+  }, [id, isEditing]);
 
   const fetchCategories = async () => {
     try {
@@ -89,7 +89,7 @@ const PostEditor = () => {
       .replace(/[^a-z0-9 -]/g, '')
       .replace(/\s+/g, '-')
       .replace(/-+/g, '-')
-      .trim('-');
+      .trim();
   };
 
   const handleTitleChange = (title: string) => {
