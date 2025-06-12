@@ -157,10 +157,10 @@ const BlogPost = () => {
                 </div>
               )}
 
-              {/* Content - now renders as HTML */}
+              {/* Content - now renders as HTML with blog-content styling */}
               <div className="prose prose-lg max-w-none">
                 <div 
-                  className="text-foreground leading-relaxed"
+                  className="blog-content text-foreground leading-relaxed"
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
               </div>
