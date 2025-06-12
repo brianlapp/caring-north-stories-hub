@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,6 +13,7 @@ import { ImageUpload } from '@/components/ImageUpload';
 import RichTextEditor from '@/components/RichTextEditor';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 import { ArrowLeft, Save, Eye } from 'lucide-react';
 
 interface PostData {
@@ -152,17 +154,20 @@ const PostEditor = () => {
           .eq('id', id);
 
         if (error) throw error;
+        toast.success(publish ? 'Post published successfully!' : 'Draft saved successfully!');
       } else {
         const { error } = await supabase
           .from('blog_posts')
           .insert([postData]);
 
         if (error) throw error;
+        toast.success(publish ? 'Post published successfully!' : 'Draft saved successfully!');
       }
 
       navigate('/admin');
     } catch (error: any) {
       setError(error.message || 'Failed to save post');
+      toast.error('Failed to save post');
     } finally {
       setSaving(false);
     }
