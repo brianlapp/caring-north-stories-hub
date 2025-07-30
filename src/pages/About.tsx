@@ -5,6 +5,8 @@ import AboutVision from '@/components/about/AboutVision';
 import AboutMission from '@/components/about/AboutMission';
 import AboutValues from '@/components/about/AboutValues';
 import AboutCharter from '@/components/about/AboutCharter';
+import AboutPartners from '@/components/about/AboutPartners';
+import AboutFriends from '@/components/about/AboutFriends';
 import AboutReferences from '@/components/about/AboutReferences';
 import AboutCommunity from '@/components/about/AboutCommunity';
 import AboutLandAcknowledgement from '@/components/about/AboutLandAcknowledgement';
@@ -21,6 +23,8 @@ const About = () => {
         <AboutMission />
         <AboutValues />
         <AboutCharter />
+        <AboutPartners />
+        <AboutFriends />
         <AboutReferences />
         <AboutCommunity />
         <AboutLandAcknowledgement />

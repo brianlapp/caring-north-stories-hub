@@ -8,36 +8,47 @@ const Events = () => {
   const pastEvents = [
     {
       id: 1,
-      title: "Advance Care Planning Workshop",
-      date: "2024-03-15",
-      location: "Community Center, North Grenville",
-      description: "We brought in a renowned author and expert on advance care planning to facilitate a workshop for community members. This event helped participants understand the importance of planning for future care decisions and sparked meaningful conversations about end-of-life preferences.",
-      type: "Educational Workshop",
-      attendees: "25 participants",
-      icon: BookOpen,
-      highlights: ["Expert author presentation", "Interactive planning exercises", "Community discussion circles"]
+      title: "Collaborative Inquiry with Youngsters of Yore",
+      date: "2025-05-22",
+      location: "North Grenville Public Library",
+      description: "An introduction to Compassionate North Grenville followed by a lively inquiry about the experiences of compassion in the past and present in North Grenville.",
+      type: "Collaborative Inquiry",
+      attendees: "30 attendees",
+      icon: Heart,
+      highlights: ["Authentic stories", "Historical community experiences", "Positive vibe"]
     },
     {
       id: 2,
-      title: "Youngsters of Yore Presentation",
-      date: "2024-02-20",
-      location: "Senior Center, Kemptville",
-      description: "A special presentation featuring our community elders sharing stories, wisdom, and memories from their experiences. This intergenerational gathering created beautiful connections between community members of all ages.",
-      type: "Community Storytelling",
-      attendees: "30 participants",
-      icon: Heart,
-      highlights: ["Elder wisdom sharing", "Intergenerational connections", "Historical community stories"]
+      title: "Inaugural Compassionate Care Award",
+      date: "2025-05-13",
+      location: "Catered Affairs/North Grenville Municipality",
+      description: "Brenda Ward received the municipality's inaugural Compassionate Care Award. The award is granted for 'Volunteer efforts, individual or group, demonstrating creativity in compassionate care, recognizing imagination, originality, innovation or artistic expressions of care.' Brenda is known as The Poppy Lady because she initiated and coordinates the annual Poppy Remembrance Day Art Installation at the Clock Tower in downtown Kemptville.",
+      type: "Public Event",
+      attendees: "Public event",
+      icon: BookOpen,
+      highlights: ["Inspiring leadership", "Arts in action", "Volunteerism"]
     },
     {
       id: 3,
-      title: "Storytelling and Introduction Meeting",
-      date: "2024-01-18",
-      location: "Library Meeting Room, Kemptville",
-      description: "Our foundational gathering where community members came together to share personal stories and learn about Compassionate North Grenville's mission. This introductory meeting set the tone for our community-focused approach.",
-      type: "Introduction & Storytelling",
-      attendees: "18 participants",
+      title: "Community Update and \"Let's Talk\"",
+      date: "2025-05-06",
+      location: "Kemptville Christian Reformed Church",
+      description: "An open meeting for everyone interested in learning about Compassionate North Grenville. Participants shared stories of compassion in North Grenville and beyond.",
+      type: "Community Meeting",
+      attendees: "10 participants",
+      icon: Users,
+      highlights: ["Mission introduction", "Sharing stories", "Compassion"]
+    },
+    {
+      id: 4,
+      title: "Advance Care Planning Event",
+      date: "2025-04-16",
+      location: "North Grenville Public Library",
+      description: "An educational opportunity featuring an introduction to Compassionate North Grenville and an engaging presentation by author/speaker Marc Seguin on the importance of planning for future care decisions.",
+      type: "Educational Event",
+      attendees: "35 attendees",
       icon: Lightbulb,
-      highlights: ["Mission introduction", "Personal story sharing", "Community building"]
+      highlights: ["Authentic presentations", "ACP resources distributed", "Identified local resources"]
     }
   ];
 

@@ -26,7 +26,7 @@ const HeroSection = () => {
         {/* Hero Text Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-6xl md:text-8xl font-heading font-bold text-white mb-8 animate-fade-in drop-shadow-2xl leading-tight">
-            Building Community Through{' '}
+            Supporting Community Through{' '}
             <span className="text-primary-foreground drop-shadow-lg block mt-4">Compassion</span>
           </h1>
           
@@ -56,7 +56,7 @@ const HeroSection = () => {
               </div>
               <h3 className="text-xl font-heading font-semibold mb-4">Read Our Blog</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Discover weekly stories of compassion, caregiving, and community connection 
+                Discover stories of compassion, caregiving, and connection 
                 that inspire and unite us.
               </p>
             </Card>
@@ -67,8 +67,8 @@ const HeroSection = () => {
               </div>
               <h3 className="text-xl font-heading font-semibold mb-4">Join Events</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Participate in "Let's Talk Compassion" gatherings, storytelling circles, 
-                and community forums.
+                Participate in "Let's Talk Compassion" gatherings, 
+                "Collaborative Inquiry on Compassion" sessions, educational presentations, and special events.
               </p>
             </Card>
 
@@ -76,7 +76,7 @@ const HeroSection = () => {
               <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Heart className="w-8 h-8 text-primary" aria-hidden="true" />
               </div>
-              <h3 className="text-xl font-heading font-semibold mb-4">Build Community</h3>
+              <h3 className="text-xl font-heading font-semibold mb-4">Support Community</h3>
               <p className="text-muted-foreground leading-relaxed">
                 Connect with neighbors, support each other through difficult times, 
                 and strengthen our community bonds.
